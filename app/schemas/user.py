@@ -232,3 +232,17 @@ class UserCreateResponse(UserResponse):
     """Response for user creation"""
     data: Optional[UserPublic] = None
     temporary_password: Optional[str] = None  # For admin-created users
+
+class UserInDB(UserBase):
+    """Internal user schema with hashed password"""
+    id: int
+    uuid: str
+    hashed_password: str
+    role: UserRole
+    status: UserStatus
+    is_active: bool
+    is_verified: bool
+    created_at: datetime
+    updated_at: datetime
+    
+    model_config = {"from_attributes": True}
