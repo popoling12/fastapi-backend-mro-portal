@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 from jose import JWTError, jwt
-from passlib.context import PasslibContext
+from passlib.context import CryptContext
 
 from app.core.config import settings
 from app.schemas.token import TokenPayload
 
 # Password hashing context
-pwd_context = PasslibContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # --- Password Hashing Functions ---
 def verify_password(plain_password: str, hashed_password: str) -> bool:
