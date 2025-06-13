@@ -15,7 +15,7 @@ from app.schemas.token import TokenPayload
 # OAuth2PasswordBearer scheme
 # The tokenUrl should point to the endpoint that provides the token
 reusable_oauth2 = OAuth2PasswordBearer(
-    tokenUrl=f"{settings.API_V1_STR}/login/access-token"
+    tokenUrl=f"{settings.API_V1_STR}/auth/login/access-token"
 )
 
 # --- Dependency to get DB session ---
