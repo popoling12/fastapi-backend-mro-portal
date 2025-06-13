@@ -1,6 +1,7 @@
 from typing import Any, Dict, Optional
 
-from pydantic import BaseSettings, PostgresDsn, validator
+from pydantic import PostgresDsn, field_validator
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
@@ -15,21 +16,25 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     SQLALCHEMY_DATABASE_URL: Optional[PostgresDsn] = None
 
-    @validator("SQLALCHEMY_DATABASE_URL", pre=True)
-    def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
+    @field_validator("SQLALCHEMY_DATABASE_URL", mode="before")
+    @classmethod
+    def assemble_db_connection(cls, v: Optional[str], info) -> Any:
         if isinstance(v, str) and v:
             return v
+        
+        values = info.data
         return PostgresDsn.build(
             scheme="postgresql",
-            user=values.get("POSTGRES_USER"),
+            username=values.get("POSTGRES_USER"),
             password=values.get("POSTGRES_PASSWORD"),
             host=values.get("POSTGRES_SERVER"),
-            path=f"/{values.get('POSTGRES_DB') or ''}",
+            path=f"{values.get('POSTGRES_DB') or ''}",
         )
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
-        env_file_encoding = 'utf-8'
+    model_config = {
+        "case_sensitive": True,
+        "env_file": ".env",
+        "env_file_encoding": "utf-8"
+    }
 
 settings = Settings()
