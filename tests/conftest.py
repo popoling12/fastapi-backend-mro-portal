@@ -15,7 +15,7 @@ from app.main import app
 from app.db.base import Base
 from app.core.config import settings
 
-# Create test database engine using PostgreSQL
+# Create test database engine using PostgreSQL _test DB
 TEST_SQLALCHEMY_DATABASE_URL = str(settings.SQLALCHEMY_DATABASE_URL).replace(
     settings.POSTGRES_DB,  # Replace the database name
     f"{settings.POSTGRES_DB}_test"  # Add _test suffix
