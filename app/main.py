@@ -26,7 +26,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "Solar Monitoring API is running!"}
+    return {"message": "Solar Monitoring API is running/!"}
 
 @app.get("/health")
 async def health_check():
@@ -34,4 +34,4 @@ async def health_check():
 
 # Include API routes
 from app.api.v1.api import api_router
-app.include_router(api_router, prefix=settings.API_V1_STR)
+app.include_router(api_router, prefix=settings.API_V1_STR) 
