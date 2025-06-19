@@ -12,6 +12,22 @@ from .user import (
 # Import token schemas
 from .token import Token, TokenPayload, TokenRequestForm
 
+# Import asset schemas
+from .asset import (
+    # Location schemas
+    Location, LocationCreate, LocationUpdate,
+    # AssetTemplate schemas
+    AssetTemplate, AssetTemplateCreate, AssetTemplateUpdate,
+    # StoreInventory schemas
+    StoreInventory, StoreInventoryCreate, StoreInventoryUpdate,
+    # Asset schemas
+    Asset, AssetCreate, AssetUpdate, AssetHierarchy, AssetAncestors,
+    # AssetItem schemas
+    AssetItem, AssetItemCreate, AssetItemUpdate,
+    # AssetSensor schemas
+    AssetSensor, AssetSensorCreate, AssetSensorUpdate
+)
+
 __all__ = [
     # Base
     "BaseModel",
@@ -39,5 +55,37 @@ __all__ = [
     # Token
     "Token",
     "TokenPayload",
-    "TokenRequestForm"
+    "TokenRequestForm",
+    
+    # Asset - Location
+    "Location",
+    "LocationCreate",
+    "LocationUpdate",
+    
+    # Asset - Template
+    "AssetTemplate",
+    "AssetTemplateCreate",
+    "AssetTemplateUpdate",
+    
+    # Asset - Inventory
+    "StoreInventory",
+    "StoreInventoryCreate",
+    "StoreInventoryUpdate",
+    
+    # Asset - Main
+    "Asset",
+    "AssetCreate",
+    "AssetUpdate",
+    "AssetHierarchy",
+    "AssetAncestors",
+    
+    # Asset - Items
+    "AssetItem",
+    "AssetItemCreate",
+    "AssetItemUpdate",
+    
+    # Asset - Sensors
+    "AssetSensor",
+    "AssetSensorCreate",
+    "AssetSensorUpdate"
 ]
